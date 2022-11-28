@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { sample } from '../../utils';
+import { range, sample } from '../../utils';
 import { WORDS } from '../../data';
 import InputText from '../Input/Input';
 import GussesList from '../GussesList/GussesList';
