@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { range, sample } from '../../utils';
+import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import InputText from '../Input/Input';
 import GussesList from '../GussesList/GussesList';
@@ -20,9 +19,8 @@ function Game() {
     setItems(nextItems);
   }
 
-
   return <>
-    <GussesList items={items}></GussesList>
+    <GussesList answer={answer} items={items}></GussesList>
     <InputText handleAddItem={handleAddItem}></InputText>
   </>;
 }
