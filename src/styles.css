@@ -219,6 +219,14 @@ h1 {
   margin-bottom: 0.5em;
 }
 
+.restart-button{
+  display: inline-block;
+  background-color: bisque;
+  width: fit-content;
+  padding: 1em;
+  border-radius: 1em;
+}
+
 /*
   Keyframe animations
 */
@@ -230,3 +238,5 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+

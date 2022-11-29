@@ -7,12 +7,12 @@ import Banner from '../Banner/Banner';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
-
 function Game() {
+  const [answer, setAnswer] = React.useState(() => sample(WORDS))
+  console.info({ answer });
+
   const [items, setItems] = React.useState([]);
   const [gameStatus, setGameStatus] = useState('running');
 
@@ -28,8 +28,16 @@ function Game() {
     }
   }
 
+  function handleReset() {
+    const newAnswer = sample(WORDS)
+    setGameStatus('running');
+    setItems([]);
+    setAnswer(newAnswer)
+  }
+
   return (
     <>
+      <button className='restart-button' onClick={handleReset} >Reset</button>
       <GussesList answer={answer} items={items} />
       <InputText status={gameStatus} handleAddItem={handleAddItem} />
       {gameStatus !== 'running' && <Banner answer={answer} status={gameStatus} counter={items.length}></Banner>}
