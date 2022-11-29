@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-function InputText({ handleAddItem }) {
+function InputText({ handleAddItem, status }) {
   const [inputValue, setInputValue] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (inputValue.length !== 5) window.alert('please enter a word with 5 letters! ^^')
+
     handleAddItem(inputValue);
-    console.log('Input: ', inputValue);
     setInputValue('')
   }
 
@@ -19,7 +21,7 @@ function InputText({ handleAddItem }) {
     <input
       value={inputValue}
       onChange={handleChange}
-      maxLength={5} id="guess-input" type="text" />
+      maxLength={5} minLength={5} id="guess-input" type="text" disabled={status !== 'running'} />
   </form>;
 }
 
