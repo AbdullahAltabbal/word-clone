@@ -5,6 +5,8 @@ import InputText from '../Input/Input';
 import GussesList from '../GussesList/GussesList';
 import Banner from '../Banner/Banner';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import Keyboard from '../Keyboard';
+import { checkGuess } from '../../game-helpers';
 
 // Pick a random word on every pageload.
 // const answer = sample(WORDS);
@@ -35,11 +37,16 @@ function Game() {
     setAnswer(newAnswer)
   }
 
+  const validatedGuesses = items.map((guess) =>
+    checkGuess(guess, answer)
+  );
+
   return (
     <>
       <button className='restart-button' onClick={handleReset} >Reset</button>
-      <GussesList answer={answer} items={items} />
+      <GussesList validatedGuesses={validatedGuesses} answer={answer} />
       <InputText status={gameStatus} handleAddItem={handleAddItem} />
+      <Keyboard validatedGuesses={validatedGuesses} />
       {gameStatus !== 'running' && <Banner answer={answer} status={gameStatus} counter={items.length}></Banner>}
     </>
   );
